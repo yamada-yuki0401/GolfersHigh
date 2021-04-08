@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GolfersHigh</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <main>
+    <header>
+  <div class="collapse bg-light" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <% if user_signed_in? %>
+            <%=link_to "About", homes_about_path %>
+            <%=link_to "ログアウト", destroy_user_session_path %>
+            <%=link_to "マイページ", user_path(@user) %>
+          <% else %>
+            <%=link_to "About", homes_about_path %>
+            <%=link_to "ログイン", new_user_session_path %>
+            <%=link_to "新規登録", new_user_registration_path %>
+          <% end %>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-light bg-light">
+    <div class="container d-flex">
+      <div class="navbar-brand d-flex align-items-center">
+
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+    <%= yield %>
+  </body>
+</html>

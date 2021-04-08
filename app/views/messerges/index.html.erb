@@ -1,0 +1,27 @@
+<h1 class="text-light text-center mt-5">質問投稿</h1>
+<!-- form_with部分 -->
+<%= form_with model:@messerge, local:true do |f| %>
+  <h4 class="text-light text-center mt-5">本文</h4>
+  <div class="text-center mt-5">
+    <%= f.text_area :comment %>
+    <div><%= f.submit '投稿', class:"btn btn-primary"%></div>
+  </div>
+<% end %>
+
+<table class="text-light mt-5 text-center">
+  <thead>
+    <tr>
+      <th><%= @user.name %></th>
+    </tr>
+  </thead>
+
+  <tbody class="text-light mt-5 text-center">
+    <% @messerges.each do |messerge| %>
+      <tr>
+        <td><%= messerge.comment %></td>
+        <td><%= link_to 'Edit', edit_messerge_path(messerge)%></td>
+        <td><%= link_to 'Destroy', messerge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
