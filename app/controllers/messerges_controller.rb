@@ -2,6 +2,8 @@ class MessergesController < ApplicationController
   def index
     @messerges = Messerge.all
     @user = current_user
+    @like = Like.new
+    @messerge = Messerge.new
   end
 
   def create
@@ -9,14 +11,6 @@ class MessergesController < ApplicationController
     @messerge.user_id = current_user.id
     @messerge.save
     redirect_to messerges_path
-  end
-
-  def edit
-    @messerge = Messerge.find(params[:id])
-    @user = current_user
-  end
-
-  def update
   end
 
   def destroy
@@ -27,6 +21,6 @@ class MessergesController < ApplicationController
 
   private
   def messerge_params
-    params.permit(:user, :comment, :video, :image)
+    params.require(:messerge).permit(:user, :comment, :video, :image)
   end
 end

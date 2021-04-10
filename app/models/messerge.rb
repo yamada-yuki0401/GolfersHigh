@@ -1,4 +1,9 @@
 class Messerge < ApplicationRecord
-  belongs_to :user
-  
+  belongs_to :user, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  def liked_by?(user)
+  likes.where(user_id: user.id).exists?
+  end
+  attachment :image
+  mount_uploader :video, VideoUploader
 end

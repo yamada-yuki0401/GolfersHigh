@@ -18,8 +18,10 @@
         <div class="col-sm-8 col-md-7 py-4">
           <% if user_signed_in? %>
             <%=link_to "About", homes_about_path %>
-            <%=link_to "ログアウト", destroy_user_session_path %>
+            <%=link_to "ログアウト", destroy_user_session_path, method: :delete  %>
             <%=link_to "マイページ", user_path(@user) %>
+            <%=link_to "質問箱", messerges_path %>
+            <%=link_to "スコア管理", scores_path %>
           <% else %>
             <%=link_to "About", homes_about_path %>
             <%=link_to "ログイン", new_user_session_path %>

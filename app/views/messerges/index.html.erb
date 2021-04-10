@@ -3,25 +3,47 @@
 <%= form_with model:@messerge, local:true do |f| %>
   <h4 class="text-light text-center mt-5">本文</h4>
   <div class="text-center mt-5">
+    <h4>質問</h4>
     <%= f.text_area :comment %>
+    <h4>画像</h4>
+    <%= f.attachment_field :image %>
+    <h4>動画</h4>
+    <%= f.file_field :video, :accept => 'video/*' %>
     <div><%= f.submit '投稿', class:"btn btn-primary"%></div>
   </div>
 <% end %>
 
-<table class="text-light mt-5 text-center">
-  <thead>
-    <tr>
-      <th><%= @user.name %></th>
-    </tr>
-  </thead>
-
+<table class="mt-5 text-center">
   <tbody class="text-light mt-5 text-center">
+
+
+
     <% @messerges.each do |messerge| %>
-      <tr>
+      <tr class="center-block">
+
+        <th><%= messerge.user.name %></th>
+        <th><% if current_user.following?(messerge.user.id) %>
+          <%= link_to 'フォロー外す', unfollow_path(messerge.user.id), method: :POST %>
+        <% else %>
+          <%= link_to 'フォローする', follow_path(messerge.user.id), method: :POST %>
+        <% end %></th>
         <td><%= messerge.comment %></td>
-        <td><%= link_to 'Edit', edit_messerge_path(messerge)%></td>
-        <td><%= link_to 'Destroy', messerge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to '消去', messerge, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+        <td>
+          <% if messerge.liked_by?(current_user) %>
+            <%= button_to messerge_like_path(messerge_id: messerge.id, id: Like.find_by(messerge_id: messerge.id).id), method: :delete ,class:"btn btn-primary" do %>
+            <i class="fas fa-thumbs-up"></i>
+            <% end %>
+          <% else %>
+            <%= button_to messerge_likes_path(messerge),class:"btn btn-primary" do %>
+            <i class="far fa-thumbs-up"></i>
+            <% end %>
+          <% end %>
+  　　　　　　<%= attachment_image_tag messerge, :image, :fill, 100, 100, format: 'jpeg'%>
+  　　　　　</td>
+  　　　　　<td>いいね件数: <%= messerge.likes.count %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+

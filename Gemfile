@@ -68,5 +68,11 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
 gem 'rspec-rails', '~> 3.6'
 gem 'pry-byebug', group: :development
+#動画投稿
 gem 'carrierwave'
-gem 'mini_magick'
+# 画像投稿用gem
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+# 画像加工用（サイズ調整など）gem
+gem "refile-mini_magick"
+#楽天ARI
+gem 'rakuten_web_service'

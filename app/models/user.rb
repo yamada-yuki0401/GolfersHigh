@@ -9,10 +9,8 @@ class User < ApplicationRecord
   has_many :messerges, dependent: :destroy
 
   #いいね関係
-  has_many :likes, dependent: :destroy
-  def already_liked?(messerges)
-    self.likes.exists?(messerges_id: messerges.id)
-  end
+  has_many :like_messerges, through: :likes, source: :messerge
+
 
   #フォロー関係
   has_many :following_relationships,foreign_key: "follower_id", class_name: "Relationship",  dependent: :destroy
@@ -20,17 +18,18 @@ class User < ApplicationRecord
   has_many :follower_relationships,foreign_key: "following_id",class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :follower_relationships
   #すでにフォロー済みであればture返す
-  def following?(other_user)
-    self.followings.include?(other_user)
+  # ユーザーをフォローする
+  def follow(followed_user_id)
+    FollowRelationship.create(following_id: followed_user_id, follower_id: self.id)
   end
 
-  #ユーザーをフォローする
-  def follow(other_user)
-    self.following_relationships.create(following_id: other_user.id)
+  # ユーザーのフォローを外す
+  def unfollow(followed_user_id)
+    FollowRelationship.find_by(following_id: followed_user_id, follower_id: self.id).destroy
   end
 
-  #ユーザーのフォローを解除する
-  def unfollow(other_user)
-    self.following_relationships.find_by(following_id: other_user.id).destroy
+  # フォローしていればtrueを返す
+  def following?(followed_user_id)
+    FollowRelationship.find_by(following_id: followed_user_id, follower_id: self.id).present?
   end
 end

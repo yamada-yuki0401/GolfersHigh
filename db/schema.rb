@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_065246) do
+ActiveRecord::Schema.define(version: 2021_04_09_025929) do
 
   create_table "courses", force: :cascade do |t|
     t.string "course_name"
@@ -31,18 +31,19 @@ ActiveRecord::Schema.define(version: 2021_04_08_065246) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "messege_id", null: false
+    t.integer "messerge_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "messerges", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "comment", null: false
     t.string "video"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_id"
   end
 
   create_table "scores", force: :cascade do |t|

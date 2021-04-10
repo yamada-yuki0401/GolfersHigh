@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   get 'homes/about'
   root :to => "homes#top"
   resources :users
-  resources :relationships, only: [:create, :destroy]
-  resource :scores, only:[:new, :create, :index]
+  post 'follow/:id' => 'relationships#create', as: 'follow' # フォローする
+  post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' # フォロー外す
+  resources :scores, only:[:new, :create, :index, :show]
   resources :messerges do
    resources :likes, only: [:create, :destroy]
  end
