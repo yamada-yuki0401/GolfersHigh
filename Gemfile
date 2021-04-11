@@ -76,3 +76,5 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 #楽天ARI
 gem 'rakuten_web_service'
+#エラーメッセージの日本語化
+gem 'rails-i18n'

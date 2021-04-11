@@ -1,24 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="col-lg-10 text-center">
+  <h2 class="text-light">マイページ</h2>
+   <%= @user.name %>
+   <%= @user.introduction %>
+  <div class="">
+    <%= link_to 'マイページ編集', edit_user_path(@user), class:"btn btn-primary" %>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Introduction:</strong>
-
-</p>
-
-<p>
-  <strong>Password:</strong>
-
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <p class="text-light"><%= "フォロー数: #{@user.followers.count}" %></p>
+  <p class="text-light"><%= "フォロワー数: #{@user.followings.count}" %></p>
+  <% @user.messerges.each do |messerge| %>
+    <td><%= messerge.created_at.strftime("%Y年%m月%d日")%></td>
+    <td><%= messerge.comment %></td>
+    <td>いいね件数: <%= messerge.likes.count %></td>
+  <% end %>
+</div>

@@ -28,18 +28,12 @@
           <%= link_to 'フォローする', follow_path(messerge.user.id), method: :POST %>
         <% end %></th>
         <td><%= messerge.comment %></td>
+        <td><%= attachment_image_tag messerge, :image, :fill, 100, 100, format: 'jpeg'%></td>
         <td><%= button_to '消去', messerge, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
         <td>
-          <% if messerge.liked_by?(current_user) %>
-            <%= button_to messerge_like_path(messerge_id: messerge.id, id: Like.find_by(messerge_id: messerge.id).id), method: :delete ,class:"btn btn-primary" do %>
-            <i class="fas fa-thumbs-up"></i>
-            <% end %>
-          <% else %>
-            <%= button_to messerge_likes_path(messerge),class:"btn btn-primary" do %>
-            <i class="far fa-thumbs-up"></i>
-            <% end %>
-          <% end %>
-  　　　　　　<%= attachment_image_tag messerge, :image, :fill, 100, 100, format: 'jpeg'%>
+          <div id="likes_buttons<%= messerge.id %>">
+             <%= render partial: 'likes/like', locals: { messerge: messerge} %>
+          </div>
   　　　　　</td>
   　　　　　<td>いいね件数: <%= messerge.likes.count %></td>
       </tr>
