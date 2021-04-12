@@ -1,0 +1,33 @@
+<div style="margin:0px;padding:0px;" align="center">
+  <h3>後半ホール</h3>
+  <%= @first_half.first_half_total %>
+  <table width="500px" style="border-collapse: collapse;border:4px groove #000000;background-color:#FFFFFF;color:#000000;text-align:left;">
+    <tbody>
+      <tr>
+        <td style="border:4px groove #000000;text-align:center;">10H</td>
+        <td style="border:4px groove #000000;text-align:center;">11H</td>
+        <td style="border:4px groove #000000;text-align:center;">12H</td>
+        <td style="border:4px groove #000000;text-align:center;">13H</td>
+        <td style="border:4px groove #000000;text-align:center;">14H</td>
+        <td style="border:4px groove #000000;text-align:center;">15H</td>
+        <td style="border:4px groove #000000;text-align:center;">16H</td>
+        <td style="border:4px groove #000000;text-align:center;">17H</td>
+        <td style="border:4px groove #000000;text-align:center;">18H</td>
+    　</tr>
+    <%= form_with url: scores_result_path, model: @first_half, local: true do |f| %>
+    　<tr>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole10,:size=>"1", style: "border: none"%></td>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole11,:size=>"1", style: "border: none"%></td>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole12,:size=>"1", style: "border: none"%></td>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole13,:size=>"1", style: "border: none"%></td>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole14,:size=>"1", style: "border: none"%></td>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole15,:size=>"1", style: "border: none"%></td>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole16,:size=>"1", style: "border: none"%></td>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole17,:size=>"1", style: "border: none"%></td>
+        <td style="border:4px groove #000000;text-align:center;"><%= f.text_field :hole18,:size=>"1", style: "border: none"%></td>
+    　</tr>
+    　 <div><%= f.submit 'お疲れさまでした！！', class: "btn btn-primary"%></div>
+    <% end %>
+    </tbody>
+  </table>
+</div>

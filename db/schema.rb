@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_020707) do
+ActiveRecord::Schema.define(version: 2021_04_12_012222) do
+
+  create_table "answers", force: :cascade do |t|
+    t.string "content", null: false
+    t.integer "user_id"
+    t.integer "messerge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["messerge_id"], name: "index_answers_on_messerge_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "courses", force: :cascade do |t|
-    t.string "course_name"
-    t.text "course_info"
-    t.string "course_address"
+    t.text "golfCourseCaption"
+    t.string "golfCourseName"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :scores, dependent: :destroy
   has_many :messerges, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   #いいね関係
   has_many :like_messerges, through: :likes, source: :messerge

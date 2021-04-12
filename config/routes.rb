@@ -7,9 +7,17 @@ Rails.application.routes.draw do
  end
   post 'follow/:id' => 'relationships#create', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' # フォロー外す
-  resources :scores, only:[:new, :create, :index, :show]
-  resources :messerges do
+
+  post 'scores/first_half' => 'scores#first_half'
+  get 'scores/first_half' => 'scores#first_half'
+  post 'scores/latter_half' => 'scores#latter_half'
+  get 'scores/latter_half' => 'scores#latter_half'
+  post 'scores' => 'scores#create'
+  post 'scores/result' => 'scores#result'
+
+  resources :messerges, only: [:index, :show, :create, :destroy] do
    resources :likes, only: [:create, :destroy]
+   resources :answers, only: [:create, :destroy]
  end
-  resource :courses, only:[:index]
+  resources :courses, only:[:index]
 end

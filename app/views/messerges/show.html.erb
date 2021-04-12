@@ -1,0 +1,18 @@
+<h3>質問に答える</h3>
+<%= @messerge.comment %>
+
+<h2>コメント一覧</h2>
+<% @answers.each do |answer| %>
+  <div>
+    <%= answer %>
+    <hr>
+  </div>
+<% end %>
+
+<%= form_with(model: @answer,url: messerge_answers_path(@messerge), local:true) do |f| %>
+  <%= f.text_field :content %>
+  <br>
+  <%= f.submit 'コメントする' %>
+<% end %>
+
+<%= link_to "ホームへ戻る", messerges_path %>

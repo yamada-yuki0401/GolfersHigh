@@ -1,9 +1,17 @@
 class MessergesController < ApplicationController
+
   def index
     @messerges = Messerge.all
     @user = current_user
     @like = Like.new
     @messerge = Messerge.new
+  end
+
+  def show
+    @user = current_user
+    @messerge = Messerge.find(params[:id])
+    @answers = @messerge.answers
+    @answer = Answer.new
   end
 
   def create

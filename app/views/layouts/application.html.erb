@@ -15,14 +15,14 @@
   <div class="collapse bg-light" id="navbarHeader">
     <div class="container">
       <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
+        <div class="col-sm-8 col-md-7 py-4 ml-5">
           <% if user_signed_in? %>
             <%=link_to "About", homes_about_path %>
-            <%=link_to "ログアウト", destroy_user_session_path, method: :delete  %>
-            <%=link_to "マイページ", user_path(@user) %>
-            <%=link_to "質問箱", messerges_path %>
-            <%=link_to "スコア管理", scores_path %>
-            <%=link_to "ユーザー検索", search_users_path %>
+            <%=link_to "ログアウト", destroy_user_session_path, method: :delete, class:"ml-4" %>
+            <%=link_to "マイページ", user_path(@user), class:"ml-4" %>
+            <%=link_to "質問箱", messerges_path, class:"ml-4" %>
+            <%=link_to "スコア管理", courses_path, class:"ml-4" %>
+            <%=link_to "ユーザー検索", search_users_path, class:"ml-4" %>
           <% else %>
             <%=link_to "About", homes_about_path %>
             <%=link_to "ログイン", new_user_session_path %>
