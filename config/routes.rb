@@ -8,10 +8,7 @@ Rails.application.routes.draw do
   post 'follow/:id' => 'relationships#create', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' # フォロー外す
 
-  post 'scores/first_half' => 'scores#first_half'
-  get 'scores/first_half' => 'scores#first_half'
-  post 'scores/latter_half' => 'scores#latter_half'
-  get 'scores/latter_half' => 'scores#latter_half'
+  post 'scores/new' => 'scores#new'
   post 'scores' => 'scores#create'
   post 'scores/result' => 'scores#result'
 

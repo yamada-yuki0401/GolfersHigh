@@ -1,41 +1,49 @@
-<h1 class="text-light text-center mt-5">質問投稿</h1>
-<%= form_with model:@messerge, local:true do |f| %>
-  <h4 class="text-light text-center mt-5">本文</h4>
-  <div class="text-center mt-5">
-    <h4>質問</h4>
-    <%= f.text_area :comment %>
-    <h4>画像</h4>
-    <%= f.attachment_field :image %>
-    <h4>動画</h4>
-    <%= f.file_field :video, :accept => 'video/*' %>
-    <div><%= f.submit '投稿', class:"btn btn-primary"%></div>
-  </div>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5">
+      <h1 class="text-center mt-5">質問投稿</h1>
+      <%= form_with model:@messerge, local:true do |f| %>
+        <h4 class="text-center mt-5"></h4>
+        <div class="text-center mt-5">
+          <h4>内容</h4>
+          <%= f.text_area :comment %>
+          <h4>画像</h4>
+          <%= f.attachment_field :image %>
+          <h4>動画</h4>
+          <%= f.file_field :video, :accept => 'video/*' %>
+          <div><%= f.submit '投稿', class:"btn btn-primary"%></div>
+        </div>
+      <% end %>
+    </div>
 
-<table class="mt-5 text-center">
-  <tbody class="text-light mt-5 text-center">
+    <div class="col-lg-7">
+<div class="mt-5 text-center mx-5">
+  <div class="text-light mt-5 text-center">
     <% @messerges.each do |messerge| %>
-      <tr class="center-block">
-
-        <th><%= messerge.user.name %></th>
-        <th><% if current_user.following?(messerge.user.id) %>
-          <%= link_to 'フォロー外す', unfollow_path(messerge.user.id), method: :POST, class:"btn btn-primary"  %>
-        <% else %>
-          <%= link_to 'フォローする', follow_path(messerge.user.id), method: :POST, class:"btn btn-primary"  %>
-        <% end %>
-        </th>
-        <td><%= messerge.comment %></td>
-        <td><%= attachment_image_tag messerge, :image, :fill, 100, 100, format: 'jpeg'%></td>
-        <td><%= button_to '消去', messerge, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
-        <td>
-          <div id="likes_buttons<%= messerge.id %>">
-             <%= render partial: 'likes/like', locals: { messerge: messerge} %>
-          </div>
-  　　　　　</td>
-  　　　　　<td><%= link_to "コメント" ,messerge_path(messerge)%></td>
-  　　　　　<td>いいね件数: <%= messerge.likes.count %></td>
-      </tr>
+      <div>
+        <h4><%= messerge.user.name %>
+        　　　　<% if current_user.following?(messerge.user.id) %>
+               <%= link_to 'フォロー外す', unfollow_path(messerge.user.id), method: :POST, class:"btn btn-primary"  %>
+             <% else %>
+               <%= link_to 'フォローする', follow_path(messerge.user.id), method: :POST, class:"btn btn-primary"  %>
+             <% end %>
+        </h4>
+        <div><%= messerge.comment %></div>
+        <div><%= attachment_image_tag messerge, :image, :fill, 100, 100, format: 'jpeg'%>
+             <%= link_to @messerge.video_url.to_s do %></td>
+               <%= video_tag(@messerge.video.to_s) %>
+             <% end %></div>
+        <div><%= button_to '消去', messerge, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></div>
+        <div id="likes_buttons<%= messerge.id %>"><%= render partial: 'likes/like', locals: { messerge: messerge} %></div>
+  　　　　　<div><%= link_to "コメント" ,messerge_path(messerge)%></div>
+  　　　　<div>いいね件数: <%= messerge.likes.count %></div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+
+</div>
+  </div>
+  </div>
+
 

@@ -4,9 +4,9 @@ class AnswersController < ApplicationController
     @answer.user_id = current_user.id
     @answer.messerge_id = params[:messerge_id]
     if @answer.save
-      redirect_to root_path
+      redirect_to messerge_path(@answer.messerge_id)
     else
-      redirect_to messerges_path
+      redirect_to messerge_path
     end
 
   end

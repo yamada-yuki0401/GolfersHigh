@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_012222) do
+ActiveRecord::Schema.define(version: 2021_04_13_071704) do
 
   create_table "answers", force: :cascade do |t|
     t.string "content", null: false
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_012222) do
     t.integer "hole18", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "played_date"
   end
 
   create_table "users", force: :cascade do |t|
