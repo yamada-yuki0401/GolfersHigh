@@ -22,11 +22,11 @@ test:
 
 production:
   <<: *default
-  database: rds-mysql-server
+  database: <%= ENV['DB_DATABASE'] %>
   adapter: mysql2
   encoding: utf8mb4
   charset: utf8mb4
   collation: utf8mb4_general_ci
-  host: loclahost
-  username: yuki
-  password: yukiyamada1997
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
