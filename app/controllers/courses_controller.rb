@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
   def index
     @user = current_user
-    @items = params[:keyword] ? RakutenWebService::Gora::Course.search(keyword: params[:keyword]) : []
+    @course = Course.search(params[:search])
+    # @courses = params[:keyword] ? Course.search(keyword: params[:keyword]) : []
+    @score = Score.new
   end
 end

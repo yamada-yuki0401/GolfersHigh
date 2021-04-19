@@ -1,16 +1,14 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   #デバイス関係
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true
-  validates :email, presence: true
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :email, presence: true, length: { maximum: 255 }
 
   has_many :scores, dependent: :destroy
-  has_many :messerges, dependent: :destroy
-  has_many :answers, dependent: :destroy
+  has_many :messerges, foreign_key: :user_id, dependent: :destroy
+  has_many :answers, foreign_key: :user_id, dependent: :destroy
 
   #いいね関係
   has_many :like_messerges, through: :likes, source: :messerge
@@ -35,4 +33,12 @@ class User < ApplicationRecord
   def following?(followed_user_id)
     FollowRelationship.find_by(following_id: followed_user_id, follower_id: self.id).present?
   end
+  
+  #スコア関係
+  def total
+    hole1 + hole2 + hole3 + hole4 + hole5 + hole6 + hole7 + hole8 + hole9 + hole10 + hole11 + hole12 + hole13 + hole14 + hole15 + hole16 + hole17 + hole18
+  end
+  # def mini
+  #   .minimum
+  # end
 end

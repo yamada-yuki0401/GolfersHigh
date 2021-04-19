@@ -1,4 +1,4 @@
-class RelationshipsController < ApplicationController
+class FollowRelationshipsController < ApplicationController
 
  def create
    following = current_user.follow(params[:id])
@@ -10,6 +10,7 @@ class RelationshipsController < ApplicationController
      redirect_to messerges_path
    end
  end
+ 
  def destroy
    following = current_user.unfollow(params[:id])
    if following.destroy
@@ -20,5 +21,17 @@ class RelationshipsController < ApplicationController
      redirect_to messerges_path
    end
  end
-
+ 
+ def follower
+  @user = current_user
+  @users = @user.followers
+  
+  
+ end
+ 
+ def following
+  @user = current_user
+  @users = @user.followings
+  
+ end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_071704) do
+ActiveRecord::Schema.define(version: 2021_04_18_054238) do
 
   create_table "answers", force: :cascade do |t|
     t.string "content", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2021_04_13_071704) do
     t.string "golfCourseName"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rakuten_id"
   end
 
   create_table "follow_relationships", force: :cascade do |t|

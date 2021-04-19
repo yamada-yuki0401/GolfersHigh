@@ -1,7 +1,22 @@
 class UsersController < ApplicationController
 
   def show
+    @scores = Score.where(user_id: params[:id])
+    minimum = 0
+    @scores.each_with_index do |score,index|
+      if index == 0
+        minimum = score.total
+      end
+      if minimum > score.total
+        minimum = score.total
+      end
+    end
+    @minimum_total = minimum
+    
     @user = User.find(params[:id])
+    if not current_user == @user
+      redirect_to root_path
+    end
   end
 
   def new

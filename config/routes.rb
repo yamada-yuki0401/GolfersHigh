@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   resources :users do
   get :search, on: :collection
  end
-  post 'follow/:id' => 'relationships#create', as: 'follow' # フォローする
-  post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' # フォロー外す
+  post 'follow/:id' => 'follow_relationships#create', as: 'follow' # フォローする
+  post 'unfollow/:id' => 'follow_relationships#destroy', as: 'unfollow' # フォロー外す
+  get 'following/:id' => 'follow_relationships#following', as: 'following' #フォロー一覧
+  get 'follower/:id' => 'follow_relationships#follower', as: 'follower' #フォロワー一覧
 
   post 'scores/new' => 'scores#new'
   post 'scores' => 'scores#create'
-  post 'scores/result' => 'scores#result'
+  get 'scores/result/:id' => 'scores#result', as: 'result'
 
   resources :messerges, only: [:index, :show, :create, :destroy] do
    resources :likes, only: [:create, :destroy]

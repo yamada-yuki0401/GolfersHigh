@@ -9,17 +9,16 @@
 
 <%= form_with model: @score , url:scores_new_path ,local: true do |f| %>
 		<%= f.label :played_date, "ラウンドする日" %>
-		<%= f.date_select :played_date, {use_month_numbers: true} %><br>
+		<%= f.date_select :played_date %><br>
 		<div id="search_result">
-			<% if @items == [] %>
+			<% if @course == [] %>
 				<p>該当するゴルフ場がみつかりません。</p>
 			<% else %>
-				<% @items.each do |item| %>
-				 <% p item %>
+				<% @course.each do |course| %>
 					<div class="">
-					  <%= f.radio_button :course_id,item.golf_course_id %>
-						<p class=""><%= item.golf_course_name %></p>
-							<div class=""><%= item.golf_course_caption %></div>
+					  <%= f.radio_button :course_id, course.id %>
+						<p class=""><%= course.golfCourseName %></p>
+							<div class=""><%= course.golfCourseCaption %></div>
 					</div>
 				<% end %>
 				<%= f.submit 'ラウンドを開始する',class: "golfcourse-block__startbutton" %>

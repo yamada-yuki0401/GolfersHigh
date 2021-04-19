@@ -1,9 +1,10 @@
 <% if messerge.liked_by?(current_user) %>
-            <%= button_to messerge_like_path(messerge_id: messerge.id, id: Like.find_by(messerge_id: messerge.id).id), method: :delete, remote: true,class:"btn btn-primary" do %>
-            <i class="fas fa-thumbs-up"></i>
-            <% end %>
-          <% else %>
-            <%= button_to messerge_likes_path(messerge), remote: true, class:"btn btn-primary" do %>
-            <i class="far fa-thumbs-up"></i>
-            <% end %>
-          <% end %>
+  <%= button_to messerge_like_path(messerge_id: messerge.id, id: Like.find_by(messerge_id: messerge.id).id), method: :delete, remote: true,class:"btn btn-primary" do %>
+    <i class="fas fa-thumbs-up"></i>
+  <% end %>
+<% else %>
+  <%= button_to messerge_likes_path(messerge), remote: true, class:"btn btn-primary" do %>
+   <i class="far fa-thumbs-up"></i>
+  <% end %>
+<% end %>
+<div>いいね件数: <%= messerge.likes.count %></div>

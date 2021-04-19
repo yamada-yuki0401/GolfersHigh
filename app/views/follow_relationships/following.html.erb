@@ -1,0 +1,12 @@
+<div class="text-center">
+  <h2>フォロー一覧</h2>
+    <% if @users.exists? %>
+        <% @users.each do |user| %>
+          <h3><%= user.name %></h3>
+          <h5>ベストスコア<%= @minimum_total %></h5>
+        <% end %>
+    <% else %>
+      <p>ユーザーはいません</p>
+    <% end %>
+  <%= link_to '戻る', user_path(@user), class:"text-danger mt-5" %>
+</div>

@@ -1,3 +1,52 @@
-<% @score.each do |score| %>
-<%= score.hole1 %>
-<% end %>
+<div class="text-center mt-5 container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h3><%= @score.course.golfCourseName %></h3>
+        <table width="1000" height="100" cellspacing="0">
+            <tr align="center" bgcolor="#f0f8ff">
+                <td class="text-dark">1H</td>
+                <td class="text-dark">2H</td>
+                <td class="text-dark">3H</td>
+                <td class="text-dark">4H</td>
+                <td class="text-dark">5H</td>
+                <td class="text-dark">6H</td>
+                <td class="text-dark">7H</td>
+                <td class="text-dark">8H</td>
+                <td class="text-dark">9H</td>
+                <td class="text-dark">10H</td>
+                <td class="text-dark">11H</td>
+                <td class="text-dark">12H</td>
+                <td class="text-dark">13H</td>
+                <td class="text-dark">14H</td>
+                <td class="text-dark">15H</td>
+                <td class="text-dark">16H</td>
+                <td class="text-dark">17H</td>
+                <td class="text-dark">18H</td>
+                </tr>
+                <tr align="center" bgcolor="#f0f8ff">
+                <td class="text-dark"><%= @score.hole1 %></td>
+                <td class="text-dark"><%= @score.hole2 %></td>
+                <td class="text-dark"><%= @score.hole3 %></td>
+                <td class="text-dark"><%= @score.hole4 %></td>
+                <td class="text-dark"><%= @score.hole5 %></td>
+                <td class="text-dark"><%= @score.hole6 %></td>
+                <td class="text-dark"><%= @score.hole7 %></td>
+                <td class="text-dark"><%= @score.hole8 %></td>
+                <td class="text-dark"><%= @score.hole9 %></td>
+                <td class="text-dark"><%= @score.hole10 %></td>
+                <td class="text-dark"><%= @score.hole11 %></td>
+                <td class="text-dark"><%= @score.hole12 %></td>
+                <td class="text-dark"><%= @score.hole13 %></td>
+                <td class="text-dark"><%= @score.hole14 %></td>
+                <td class="text-dark"><%= @score.hole15 %></td>
+                <td class="text-dark"><%= @score.hole16 %></td>
+                <td class="text-dark"><%= @score.hole17 %></td>
+                <td class="text-dark"><%= @score.hole18 %></td>
+            </tr>
+        </table>
+        </div> 
+    </div>    
+    <h3>トータルスコア<%= @total %></h3>
+</div>
+<h3 class="text-center mt-5">お疲れさまでした！！</h3>
+
