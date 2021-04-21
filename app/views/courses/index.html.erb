@@ -1,27 +1,27 @@
+ <div class="text-danger">
+   <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+   <% end %>
+</div>
 <div class="golfcourse-block">
-	<h1>ラウンドするゴルフ場を選択</h1>
-	<%= form_tag(courses_path,:method => 'get', local: true) do %>
-		<%= label :keyword, "ゴルフ場名を検索" %>
-		<%= text_field_tag :keyword, "" %>
-		<%= submit_tag 'ゴルフ場を検索', :golfcoursename => nil%>
-	<% end %>
+  <h1>ラウンドするゴルフ場を選択</h1>
+  <%= form_tag(courses_path,:method => 'get', local: true) do %>
+    <%= label :keyword, "ゴルフ場名を検索" %>
+	<%= text_field_tag :keyword, "" %>
+	<%= submit_tag 'ゴルフ場を検索', :golfcoursename => nil%>
+  <% end %>
 </div>
 
 <%= form_with model: @score , url:scores_new_path ,local: true do |f| %>
-		<%= f.label :played_date, "ラウンドする日" %>
-		<%= f.date_select :played_date %><br>
-		<div id="search_result">
-			<% if @course == [] %>
-				<p>該当するゴルフ場がみつかりません。</p>
-			<% else %>
-				<% @course.each do |course| %>
-					<div class="">
-					  <%= f.radio_button :course_id, course.id %>
-						<p class=""><%= course.golfCourseName %></p>
-							<div class=""><%= course.golfCourseCaption %></div>
-					</div>
-				<% end %>
-				<%= f.submit 'ラウンドを開始する',class: "golfcourse-block__startbutton" %>
-			<% end %>
+  <%= f.label :played_date, "ラウンドする日" %>
+  <%= f.date_select :played_date %><br>
+  <div id="search_result">
+    <% @course.each do |course| %>
+	  <%= f.radio_button :course_id, course.id %>
+	  <p class=""><%= course.golfCourseName %></p>
+	  <div class=""><%= course.golfCourseCaption %></div>
+  </div>
 	<% end %>
+  <%= f.submit 'ラウンドを開始する',class: "btn btn-warning text-light mt-3" %>
+<% end %>
 

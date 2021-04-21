@@ -6,15 +6,15 @@
        <h4><%= @user.introduction %></h4>
        <div class=""><%= link_to 'マイページ編集', edit_user_path(@user), class:"btn btn-primary" %></div>
        <h3>ベストスコア<%= @minimum_total %></h3>
-      <p class="text-light my-5"><%=link_to "フォロー数: #{@user.followings.count}", following_path %></p>
-      <p class="text-light"><%=link_to "フォロワー数: #{@user.followers.count}", follower_path %></p>
+       <p class="text-light my-5"><%=link_to "フォロー数: #{@user.followings.count}", following_path %></p>
+       <p class="text-light"><%=link_to "フォロワー数: #{@user.followers.count}", follower_path %></p>
     
       <% @user.messerges.each do |messerge| %>
         <div class="d-block">
           <div><%= messerge.created_at.strftime("%Y年%m月%d日")%></div>
-          <div><%= messerge.comment %></div>
+          <div class="text-break"><%= messerge.comment %></div>
           <div>いいね件数: <%= messerge.likes.count %></div>
-          <div><%= attachment_image_tag messerge, :image, :fill, 200, 200, format: 'jpeg'%></div>
+          <div><%= attachment_image_tag messerge, :image, :fill, 200, 200%></div>
         　<div><%= link_to "コメント" ,messerge_path(messerge)%></div>
         </div>
       <% end %>
@@ -25,7 +25,7 @@
         <h5 class="mt-5"><%= score.played_date %></h5>
         <h3><%= score.course.golfCourseName %></h3>
         <h3>トータルスコア<%= score.total %></h3>
-       
+        <%= button_to '消去', score_destroy_path(score), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
       <% end %>
     </div>
   </div>    

@@ -1,21 +1,28 @@
-<div class="text-center">
-  <h3>コメント</h3>
-  <h4 class="my-4"><%= @messerge.comment %></h4>
-  <div class="my-3"><%= attachment_image_tag @messerge, :image, :fill, 300, 300, format: 'jpeg'%></div>
-  <%= form_with(model: @answer,url: messerge_answers_path(@messerge), local:true) do |f| %>
-    <%= f.text_area :content %>
-    <br>
-    <%= f.submit 'コメントする' %>
-  <% end %>
-
-  <%= link_to "戻る", messerges_path , class:"text-danger" %>
-
-  <h2>コメント一覧</h2>
-  <% @answers.each do |answer| %>
-    <div class="mx-5 text-left my-5">
-      <h4 class="ml-5"><%= answer.messerge.user.name %></h4>
-      <h5 class="ml-5"><%= answer.content %></h5>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 text-center text-break">
+      <h3>コメント</h3>
+      <h4 class="my-4"><%= @messerge.comment %></h4>
+      <div class="my-3"><%= attachment_image_tag @messerge, :image, size: "300x300", format: 'jpeg'%></div>
+      <div><%= link_to @messerge.video_url.to_s do %>
+             <%= video_tag(@messerge.video.to_s, size: "500x300") %>
+            <% end %>
+      </div>
+      <%= form_with(model: @answer,url: messerge_answers_path(@messerge), local:true) do |f| %>
+        <%= f.text_area :content %>
+        <br>
+        <%= f.submit 'コメントする' %>
+      <% end %>
+    
+      <%= link_to "戻る", messerges_path , class:"text-danger" %>
+    
+      <h2>コメント一覧</h2>
+      <% @answers.each do |answer| %>
+        <div class="mx-5 text-left my-5">
+          <h4 class="ml-5"><%= answer.messerge.user.name %></h4>
+          <h5 class="ml-5"><%= answer.content %></h5>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
+  </div>
 </div>

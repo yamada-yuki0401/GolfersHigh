@@ -48,11 +48,11 @@ div {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
-  display: table;
+  
 }
 
 #error_explanation {
+  margin-left: 500px;
   width: 450px;
   border: 2px solid red;
   padding: 7px 7px 0;
@@ -67,11 +67,13 @@ div {
     margin: -7px -7px 0;
     background-color: #c00;
     color: #fff;
+    
   }
 
   ul li {
     font-size: 12px;
     list-style: square;
+    color: red;
   }
 }
 

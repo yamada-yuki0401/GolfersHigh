@@ -1,6 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
+      <div class="text-right">
+      <% if flash[:success] %>
+        <p><%= flash[:success] %></p>
+      <% end %>
+      </div>
       <h1 class="text-center mt-5">質問投稿</h1>
       <%= form_with model:@messerge, local:true do |f| %>
         <h4 class="text-center mt-5"></h4>
@@ -16,11 +21,11 @@
       <% end %>
     </div>
 
-    <div class="col-lg-7">
+    <div class="col-lg-8">
       <div class="mt-5 text-center mx-5">
         <div class="text-light mt-5 text-center">
           <% @messerges.each do |messerge| %>
-            <div>
+            <div class="my-5">
               <h4><%= messerge.user.name %>
                 <% if not current_user == messerge.user %>
               　　　　<% if current_user.following?(messerge.user.id) %>
@@ -29,16 +34,19 @@
                      <%= link_to 'フォローする', follow_path(messerge.user.id), method: :POST, class:"btn btn-primary"  %>
                    <% end %>
                 <% end %>
+                   <%= link_to "コメント" ,messerge_path(messerge), class:"btn btn-success"%>
               </h4>
-              <div><%= messerge.comment %></div>
-              <div><%= attachment_image_tag messerge, :image, :fill, 100, 100, format: 'jpeg'%>
-                   <%= link_to @messerge.video_url.to_s do %></td>
-                     <%= video_tag(@messerge.video.to_s) %>
+              <div class="text-break"><%= messerge.comment %></div>
+              <p><%= attachment_image_tag messerge, :image, size: "100x100", format: 'jpeg'%></p>
+              <div><%= link_to messerge.video_url.to_s do %>
+                     <%= video_tag(messerge.video.to_s, size: "500x300")%> 
+                     
                    <% end %>
-                   </div>
-              <%= button_to '削除', messerge_path(messerge), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+              </div>
+              <% if current_user == messerge.user %>
+                <%= button_to '削除', messerge_path(messerge), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+              <% end %>
               <div id="likes_buttons<%= messerge.id %>"><%= render partial: 'likes/like', locals: { messerge: messerge} %></div>
-        　　　　　<div><%= link_to "コメント" ,messerge_path(messerge)%></div>
             </div>
           <% end %>
         </div>

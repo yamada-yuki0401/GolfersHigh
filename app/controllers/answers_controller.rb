@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to messerge_path(@answer.messerge_id)
     else
-      redirect_to messerge_path
+      redirect_to messerge_path(@answer.messerge_id)
     end
 
   end

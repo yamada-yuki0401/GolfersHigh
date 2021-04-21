@@ -1,5 +1,5 @@
 class Messerge < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :answers, dependent: :destroy
   

@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   get 'follower/:id' => 'follow_relationships#follower', as: 'follower' #フォロワー一覧
 
   post 'scores/new' => 'scores#new'
+  get 'scores/new' => 'scores#new'
   post 'scores' => 'scores#create'
+  delete 'scores/:id' => 'scores#destroy', as: 'score_destroy'
   get 'scores/result/:id' => 'scores#result', as: 'result'
 
   resources :messerges, only: [:index, :show, :create, :destroy] do
-   resources :likes, only: [:create, :destroy]
-   resources :answers, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
+  resources :answers, only: [:create, :destroy]
  end
   resources :courses, only:[:index]
 end
