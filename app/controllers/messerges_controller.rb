@@ -1,7 +1,7 @@
 class MessergesController < ApplicationController
 
   def index
-    @messerges = Messerge.all
+    @messerges = Messerge.all.page(params[:page]).per(10)
     @user = current_user
     @like = Like.new
     @messerge = Messerge.new

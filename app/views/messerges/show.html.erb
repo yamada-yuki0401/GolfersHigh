@@ -11,7 +11,7 @@
       <%= form_with(model: @answer,url: messerge_answers_path(@messerge), local:true) do |f| %>
         <%= f.text_area :content %>
         <br>
-        <%= f.submit 'コメントする' %>
+        <%= f.submit 'コメントする', class:"btn btn-info" %>
       <% end %>
     
       <%= link_to "戻る", messerges_path , class:"text-danger" %>

@@ -19,5 +19,6 @@ module GolfersHigh
     config.time_zone = 'Tokyo'
     #エラーメッセージの日本語化
     config.i18n.default_locale = :ja
+    
   end
 end
