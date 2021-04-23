@@ -1,5 +1,4 @@
 class MessergesController < ApplicationController
-
   def index
     @messerges = Messerge.all.page(params[:page]).per(10)
     @user = current_user
@@ -28,6 +27,7 @@ class MessergesController < ApplicationController
   end
 
   private
+
   def messerge_params
     params.require(:messerge).permit(:user, :comment, :video, :image)
   end

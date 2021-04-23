@@ -48,6 +48,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop-airbnb'
 end
 
 group :test do
@@ -69,19 +70,18 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
 gem 'rspec-rails', '~> 3.6'
 gem 'pry-byebug', group: :development
-#動画投稿
+# 動画投稿
 gem 'carrierwave'
 # 画像投稿用gem
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 # 画像加工用（サイズ調整など）gem
 gem "refile-mini_magick"
-#楽天ARI
+# 楽天ARI
 gem 'rakuten_web_service'
-#エラーメッセージの日本語化
+# エラーメッセージの日本語化
 gem 'rails-i18n'
-#MySQL
+# MySQL
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
-

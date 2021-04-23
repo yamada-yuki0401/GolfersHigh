@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-
   def show
     @scores = Score.where(user_id: params[:id])
     minimum = 0
-    @scores.each_with_index do |score,index|
+    @scores.each_with_index do |score, index|
       if index == 0
         minimum = score.total
       end
@@ -12,9 +11,9 @@ class UsersController < ApplicationController
       end
     end
     @minimum_total = minimum
-    
+
     @user = User.find(params[:id])
-    if not current_user == @user
+    if current_user != @user
       redirect_to root_path
     end
   end
@@ -29,15 +28,15 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-   if @user.update(user_params)
-    redirect_to user_path
-   else
-    render "edit"
-   end
+    if @user.update(user_params)
+      redirect_to user_path
+    else
+      render "edit"
+    end
   end
 
   def search
-   @user = current_user
+    @user = current_user
     if params[:name].present?
       @users = User.where('name LIKE ?', "%#{params[:name]}%")
     else
@@ -46,7 +45,8 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :introduction, :password)
-    end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :introduction, :password)
+  end
 end

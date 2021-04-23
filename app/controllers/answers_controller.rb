@@ -8,10 +8,10 @@ class AnswersController < ApplicationController
     else
       redirect_to messerge_path(@answer.messerge_id)
     end
-
   end
 
   private
+
   def answer_params
     params.require(:answer).permit(:content)
   end
