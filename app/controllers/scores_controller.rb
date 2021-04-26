@@ -1,15 +1,7 @@
 class ScoresController < ApplicationController
   def new
-    if request.path_info == session[:ref]
-      session[:ref] = request.path_info
-
-      # 通常時の処理
       @user = current_user
       @score = Score.new(play_params)
-    else
-      # リロード時の処理
-      redirect_to courses_path
-    end
   end
 
   def create

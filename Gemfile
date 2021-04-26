@@ -58,6 +58,8 @@ group :test do
   gem 'faker'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'selenium-webdriver'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -68,7 +70,7 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
-gem 'rspec-rails', '~> 3.6'
+
 gem 'pry-byebug', group: :development
 # 動画投稿
 gem 'carrierwave'

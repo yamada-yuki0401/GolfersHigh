@@ -1,20 +1,24 @@
 <div class="text-center mt-5 container">
   <div class="row">
     <div class="col-lg-6 text-center">
-      <h2>マイページ</h2>
-       <h4><%= @user.name %></h4>
-       <h4><%= @user.introduction %></h4>
+      <h2 class="text-light">マイページ</h2>
+       <h4 class="text-light"><%= @user.name %></h4>
+       <h4 class="text-light"><%= @user.introduction %></h4>
        <div class=""><%= link_to 'マイページ編集', edit_user_path(@user), class:"btn btn-primary" %></div>
-       <h3>ベストスコア<%= @minimum_total %></h3>
+       <h3 class="text-light">ベストスコア<%= @minimum_total %></h3>
        <p class="text-light my-5"><%=link_to "フォロー数: #{@user.followings.count}", following_path %></p>
        <p class="text-light"><%=link_to "フォロワー数: #{@user.followers.count}", follower_path %></p>
     
       <% @user.messerges.each do |messerge| %>
         <div class="d-block">
-          <div><%= messerge.created_at.strftime("%Y年%m月%d日")%></div>
-          <div class="text-break"><%= messerge.comment %></div>
-          <div>いいね件数: <%= messerge.likes.count %></div>
-          <div><%= attachment_image_tag messerge, :image, :fill, 200, 200%></div>
+          <div class="text-light"><%= messerge.created_at.strftime("%Y年%m月%d日")%></div>
+          <div class="text-break text-light"><%= messerge.comment %></div>
+          <div class="text-light">いいね件数: <%= messerge.likes.count %></div>
+          <div><%= attachment_image_tag messerge, :image, size: "100x100", format: 'jpeg'%>></div>
+          <div><%= link_to messerge.video_url.to_s do %>
+                       <%= video_tag(messerge.video.to_s, size: "500x300")%> 
+                     <% end %>
+                </div>
         　<div><%= link_to "コメント" ,messerge_path(messerge)%></div>
         </div>
       <% end %>
@@ -22,9 +26,9 @@
 
     <div class="col-lg-6">
       <% @user.scores.each do |score| %>
-        <h5 class="mt-5"><%= score.played_date %></h5>
-        <h3><%= score.course.golfCourseName %></h3>
-        <h3>トータルスコア<%= score.total %></h3>
+        <h5 class="mt-5 text-light"><%= score.played_date %></h5>
+        <h3 class="text-light"><%= score.course.golfCourseName %></h3>
+        <h3 class="text-light">トータルスコア<%= score.total %></h3>
         <%= button_to '消去', score_destroy_path(score), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
       <% end %>
     </div>
