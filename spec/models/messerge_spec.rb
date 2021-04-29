@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe "投稿のテスト" do
+  let(:user) { create(:user) }
   let!(:messerge) { create(:messerge, comment: "hoge") }
 
   describe "投稿画面のテスト" do
